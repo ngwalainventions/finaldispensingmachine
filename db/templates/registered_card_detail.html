@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="container mt-4 col-md-11">
+    <h2 class="mb-4">Registered Card Detail</h2>
+
+    <div>
+      <p><strong>Card Number:</strong> {{ card.card_number }}</p>
+      <p><strong>Card Balance:</strong> {{ card.card_balance }}</p>
+      <p><strong>User:</strong> {{ card.user.username }}</p>
+    </div>
+
+    <a href="{% url 'registered-card-list' %}" class="btn btn-primary mt-4">Back to Card List</a>
+  </div>
+{% endblock %}

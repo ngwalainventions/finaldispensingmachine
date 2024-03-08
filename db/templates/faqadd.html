@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+
+<div class="container">
+    <div class="col-12 grid-margin stretch-card" style="padding-top: 50px;">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Faqs edit Form</h4>
+                
+                <form method='POST' class="forms-sample" >
+                    {% csrf_token %}
+                    <div class="form-group">
+                      <label for="gender">Question:</label>
+                      <textarea class="form-control" name="question" rows="2"></textarea>
+                    </div>
+                 
+                  <div class="form-group">
+                    <label for="gender">Its answer:</label>
+                    <textarea class="form-control" name="answer" rows="4"></textarea>
+                  </div>
+                  <br>
+                  
+                  <button type="submit" class="btn btn-success mr-2">Submit</button>
+                  
+                </form>
+                <a href="{% url 'index' %}">
+                  <button class="btn btn-light">Cancel</button>
+              </a>
+            </div>
+        </div>
+    </div>
+  
+
+{% endblock %}

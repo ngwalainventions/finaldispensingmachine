@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <h2>Receipt Details</h2>
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Receipt Number:</th>
+                <td>{{ receipt.number }}</td>
+            </tr>
+            <tr>
+                <th>Serial Number:</th>
+                <td>{{ receipt.serial }}</td>
+            </tr>
+            <tr>
+                <th>Supplier Name:</th>
+                <td>{{ receipt.supplier }}</td>
+            </tr>
+            <tr>
+                <th>Cost (Tsh):</th>
+                <td>{{ receipt.price }}</td>
+            </tr>
+            <tr>
+                <th>Category:</th>
+                <td>{{ receipt.get_category_display }}</td>
+            </tr>
+            <tr>
+                <th>Date Occurred:</th>
+                <td>{{ receipt.date }}</td>
+            </tr>
+            <tr>
+                <th>Item Name:</th>
+                <td>{{ receipt.item }}</td>
+            </tr>
+            <tr>
+                <th>Picture:</th>
+                <td>
+                    {% if receipt.picture %}
+                        <img src="{{ receipt.picture.url }}" alt="Receipt Picture" style="max-width: 300px; max-height: 300px;">
+                    {% else %}
+                        No picture available
+                    {% endif %}
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <a href="{% url 'receipt-list' %}" class="btn btn-primary">Back to Receipt List</a>
+</div>
+{% endblock content %}

@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-4 col-md-11">
+    <div class="container text-center pt-5 mt-5">
+        <a href="{% url 'subcomponent-registration' %}" class="btn btn-primary">Register Subcomponent</a>
+      </div>
+    <h2 class="mb-4">Subcomponent List</h2>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">Component Name</th>
+                <th scope="col">Price</th>
+                <th scope="col">Stock</th>
+                <th scope="col">Status</th>
+                <th scope="col">Date</th>
+                <th scope="col">Description</th>
+                <th scope="col">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for subcomponent in subcomponents %}
+            <tr>
+                <td><a href="{% url 'subcomponent-detail' pk=subcomponent.pk %}">{{ subcomponent.name }}</a></td>
+                <td>{{ subcomponent.price }}</td>
+                <td>{{ subcomponent.stock }}</td>
+                <td>{{ subcomponent.status }}</td>
+                <td>{{ subcomponent.date }}</td>
+                <td>{{ subcomponent.description }}</td>
+                <td>
+                    <a href="{% url 'subcomponent-detail' pk=subcomponent.pk %}"><i class="fa-solid fa-eye" style="color: #2268e2;"></i></a>
+                    <a href="{% url 'subcomponent-update' subcomponent_id=subcomponent.pk %}"><i class="fa-solid fa-pen-to-square" style="color: #2268e2;"></i></a>
+                    <a href="{% url 'subcomponent-delete' subcomponent_id=subcomponent.pk %}"><i class="fa-solid fa-trash-can" style="color: #ec0404;"></i></a>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="7">No subcomponents available.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <div class="pagination mt-4">
+        <span class="step-links">
+            {% if subcomponents.has_previous %}
+                <a href="?page=1">&laquo; first</a>
+                <a href="?page={{ subcomponents.previous_page_number }}">previous</a>
+            {% endif %}
+
+            <span class="current-page">
+                Page {{ subcomponents.number }} of {{ subcomponents.paginator.num_pages }}.
+            </span>
+
+            {% if subcomponents.has_next %}
+                <a href="?page={{ subcomponents.next_page_number }}">next</a>
+                <a href="?page={{ subcomponents.paginator.num_pages }}">last &raquo;</a>
+            {% endif %}
+        </span>
+    </div>
+</div>
+{% endblock %}

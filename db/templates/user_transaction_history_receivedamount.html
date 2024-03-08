@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-4 col-md-11">
+    <h2 class="mb-4 text-center">User Deposit Transaction History</h2>
+
+    <a href="{% url 'user-transaction-list' %}" class="btn btn-primary mb-3">Go to User Fertilizer Withdrawal Transaction List</a>
+
+    {% if transaction_history %}
+        <table class="table table-bordered mt-3">
+            <thead>
+                <tr>
+                    <th scope="col">Card Number</th>
+                    <th scope="col">Previous balance</th>
+                    <th scope="col">Amount Deposited</th>
+                    <th scope="col">Time received</th>
+                    <th scope="col">Current balance</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for entry in transaction_history %}
+                    <tr>
+                        <td>{{ entry.card_number }}</td>
+                        <td>{{ entry.current_balance }}</td>
+                        <td>{{ entry.amount_received }}</td>
+                        <td>{{ entry.time_received }}</td>
+                        <td>{{ entry.previous_balance }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        
+    {% else %}
+        <p style="text-align: center;">No transactions history available.</p>
+    {% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<style>
+    .fertilizer-table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    .fertilizer-table th, .fertilizer-table td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+    }
+
+    .fertilizer-table th {
+        background-color: #f2f2f2;
+    }
+    .fertilizer-header{
+        text-align: center;
+    }
+    .div-col{
+        margin-left: 10px;
+    }
+    .btn-align{
+        margin: auto;
+    }
+</style>
+
+    <title>Machine Detail</title>
+
+    <div class="row">
+        <div class="col-md-4">
+            <h1>Machine Details</h1>
+        
+            <!-- Machine Information -->
+            <h2>Machine Information</h2>
+            <p><strong>Machine Name:</strong> {{ machine.name }}</p>
+            <p><strong>Mkoa:</strong> {{ machine.region }}</p>
+            <p><strong>Wilaya:</strong> {{ machine.district }}</p>
+            <p><strong>Kata:</strong> {{ machine.ward }}</p>
+            <p><strong>Kijiji:</strong> {{ machine.village }}</p>
+            <p><strong>Tank Volume:</strong> {{ machine.tank_volume }} Litres</p>
+            <p><strong>Refilled Date:</strong> {{ machine.refill_date }}</p>
+            <p><strong>Start of Purchase Date:</strong> {{ machine.inst_date }}</p>
+            <!-- Add more machine information fields as needed -->
+        </div>
+        <div class="col-md-6">
+            <!-- Purchase Information -->
+            <h2>Purchase Information</h2>
+            <h1 style="color: #007bff;"><strong style="color: blueviolet;">Machine:</strong> {{ machine.name }}</h1>
+            <h1 style="color: #007bff;"><strong style="color: blueviolet;">Collected Amt:</strong > {{ total_purchased_price|floatformat:1 }} Tsh</h1>
+            <h1 style="color: #007bff;"><strong style="color: blueviolet;">Amount of Litres:</strong > {{ total_volume_litres|floatformat:2 }} Litres</h1>
+        </div>
+    </div>
+    
+    <div class="row py-4">
+        <div class="col-md-4"><p><a class="btn btn-primary btn-align" href="{% url 'machine-list' %}">BACK TO MACHINE LIST</a></p></div>
+        <div class="col-md-4"><p><a class="btn btn-primary btn-align" href="{% url 'all-machine-transactions' %}">VIEW ALL TRANSACTIONS HERE</a></p></div>
+    </div>
+    <!-- Fertilizer Purchase Information -->
+    <h2 class="fertilizer-header">Fertilizer Purchase Information</h2>
+    <table class="fertilizer-table col-md-11 mx-5">
+        <thead>
+            <tr>
+                <th>Machine Identifier</th>
+                <th>Card Number (UID)</th>
+                <th>Transaction Date and Time</th>
+                <th>Card Credit (Tsh)</th>
+                <th>Amount of Fertilizer (Litres)</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for transaction in machine.transactions.all %}
+                <tr>
+                    <td>{{ machine.name }}</td>
+                    <td>{{ transaction.uid }}</td>
+                    <td>{{ transaction.created_date }}</td>
+                    <td>{{ transaction.fertilizer_cost}} Tsh</td>
+                    <td>{{ transaction.fertilizer_taken }} Litres</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <!-- Back to Machine List -->
+{% endblock content %}

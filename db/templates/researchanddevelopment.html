@@ -1,0 +1,215 @@
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Ngwala Inventions</title>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    /* Add custom styles here */
+    body {
+    padding-top: 50px;
+    background-color: #DBE9FA;
+    }
+    .container-fluid {
+      font-size: 30px;
+    }
+
+    /* Initially hide the sections */
+    .hidden-section {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.3s, transform 1.5s;
+    }
+
+    /* Fade-in effect when the section is in the viewport */
+    .fade-in {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .card-title, .card-text{
+    color:#1589FF;
+    }
+    .img-size{
+        height: 330px;
+        width: fit-content;
+        margin-left: 170px;
+    }
+  </style>
+</head>
+<body>
+
+<!-- Navigation Bar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-success fixed-top">
+  <a class="navbar-brand text-white" href="#">Ngwala Inventions</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarResponsive">
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item">
+        <a class="nav-link text-white" href="#core-focus-areas">Core Focus Areas</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-white" href="#organic-pesticides">Organic Pesticides</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-white" href="#fertilizers">Fertilizers</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-white" href="#future-initiatives">Future Initiatives</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<!-- Page Content -->
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-lg-12">
+        <h2>  </h2>
+      <!-- Core Focus Areas -->
+      <div id="core-focus-areas" class="card mb-4 hidden-section" style="padding-top: 2cm;">
+        <div class="card-body">
+          <h2 class="card-title">Core Focus Areas</h2>
+          <p class="card-text">
+            At Ngwala Inventions, we are dedicated to revolutionizing agriculture by providing organic solutions to farmers. Our mission is to help farmers protect and nurture their crops without the use of harmful chemicals.
+          </p>
+        </div>
+      </div>
+
+        <div class="row px-3">
+            <!-- Organic Pesticides -->
+        <div id="organic-pesticides" class="row hidden-section">
+            <div class="col-md-6">
+                <div class="card mb-4">
+                    <div class="card-body">
+                    <h3 class="card-title">1. Organic Pesticides</h3>
+                    <p class="card-text">
+                        Our research and development team focuses on the creation of organic pesticides that effectively protect crops from pests, ensuring a healthy and bountiful harvest.
+                    </p>
+                    <!-- Add the image tag with the source (src) attribute pointing to your image file -->
+                    <img class="img-size" src="{% static 'images/organic pesticides.png' %}" alt="Organic Pesticides Image" class="img-fluid">
+                    </div>
+                </div>
+            </div>
+        <!-- </div> -->
+
+        <!-- Fertilizers -->
+        <!-- <div id="fertilizers" class="row hidden-section"> -->
+            <div class="col-md-6">
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <h3 class="card-title">2. Fertilizers</h3>
+                        <p class="card-text">
+                        We produce organic fertilizers designed to enhance soil fertility and promote robust plant growth. Our fertilizers provide essential nutrients for crops in an eco-friendly and sustainable manner.
+                        </p>
+                        <img class="img-size" src="{% static 'images/digital organic fertilizer.png' %}" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+
+      <!-- Ongoing Projects -->
+      <div id="ongoing-projects" class="col-md-12 mt-4 hidden-section">
+        <h2 style="text-align: center;">Ongoing Projects</h2>
+        
+        <!-- Project 1 -->
+        <div class="card mb-4">
+          <div class="card-body">
+            <h3>Project GreenGuard: Organic Pest Control</h3>
+            <p>
+              <strong>Objective:</strong> Develop an organic pesticide that safeguards crops from pests without harming the environment.<br>
+              <strong>Current Status:</strong> Conducting field trials and optimizing the formulation for maximum efficacy.<br>
+              <strong>Expected Impact:</strong> Provide farmers with a reliable and eco-friendly solution for pest management.
+            </p>
+          </div>
+        </div>
+    
+        <!-- Project 2 -->
+        <div class="card mb-4">
+          <div class="card-body">
+            <h3>Project NutriGrow: Sustainable Fertilization</h3>
+            <p>
+              <strong>Objective:</strong> Create a nutrient-rich organic fertilizer that enhances soil fertility and promotes healthy plant growth.<br>
+              <strong>Current Status:</strong> Testing different formulations in collaboration with agricultural experts.<br>
+              <strong>Expected Impact:</strong> Improve crop yield and soil health through sustainable fertilization practices.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Future Initiatives -->
+      <div id="future-initiatives" class="col-md-12 mt-4 hidden-section">
+        <h2 style="text-align: center; padding-top: 10px;">Future Initiatives</h2>
+    
+        <!-- Advanced Formulations -->
+        <div class="card mb-4">
+          <div class="card-body">
+            <h3>1. Advanced Formulations</h3>
+            <p>
+                We are actively researching advanced formulations for organic pesticides and fertilizers, aiming to provide farmers with state-of-the-art solutions that address evolving agricultural challenges.
+              </p>
+            </div>
+          <!-- </div> -->
+      
+          <!-- Farmer Education Program -->
+          <!-- <div class="card mb-4"> -->
+            <div class="card-body">
+              <h3>2. Farmer Education Program</h3>
+              <p>
+                In the near future, we plan to launch an education program to empower farmers with knowledge about sustainable agricultural practices, the proper use of our products, and environmental conservation.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Bootstrap JS and dependencies -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  
+  <!-- Intersection Observer API for fade-in effect -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      // Target elements with the 'hidden-section' class
+      const hiddenSections = document.querySelectorAll('.hidden-section');
+  
+      // Intersection Observer options
+      const options = {
+        root: null, // use the viewport as the root
+        rootMargin: '0px',
+        threshold: 0.5, // trigger the callback when 50% of the element is visible
+      };
+  
+      // Callback function for the Intersection Observer
+      const callback = (entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('fade-in', 'active');
+            observer.unobserve(entry.target); // stop observing once faded in
+          }
+        });
+      };
+  
+      // Create the Intersection Observer
+      const observer = new IntersectionObserver(callback, options);
+  
+      // Observe each element with the 'hidden-section' class
+      hiddenSections.forEach(section => {
+        observer.observe(section);
+      });
+    });
+  </script>
+  
+  </body>
+  </html>
+  {% endblock content %}
+  

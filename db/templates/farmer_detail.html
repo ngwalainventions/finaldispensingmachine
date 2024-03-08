@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <title>Farmer Detail</title>
+
+    <h1>Farmer Detail</h1>
+
+    <!-- Personal Information -->
+    <h2>Personal Information</h2>
+    <p><strong>Name:</strong> {{ farmer.first_name }}</p>
+    <p><strong>Name:</strong> {{ farmer.last_name }}</p>
+    <p><strong>Location:</strong> {{ farmer.location }}</p>
+    <!-- Add more personal information fields as needed -->
+    
+    <!-- Farm Information -->
+    <h2>Farm Information</h2>
+    <p><strong>Farm Size:</strong> {{ farmer.farm_size }} acres</p>
+    <!-- Add more farm information fields as needed -->
+    
+    <!-- Contact Information -->
+    <h2>Contact Information</h2>
+    <p><strong>Phone Number:</strong> {{ farmer.phone_no1 }}</p>
+    <p><strong>Email:</strong> {{ farmer.email }}</p>
+    <!-- Add more contact information fields as needed -->
+
+    <!-- Additional Sections and Fields -->
+    <!-- You can add more sections and fields here as needed for your specific use case -->
+
+    <!-- Back to Farmer List -->
+    <p><a href="{% url 'farmer-list' %}">Back to Farmer List</a></p>
+{% endblock content %}
+
+

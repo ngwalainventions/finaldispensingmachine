@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="container">
+        <h2>Your Profile</h2>
+    <img src="{{ user_profile.profile_image.url }}" alt="{{ user_profile.user.username }}" class="user-avatar" style="border-radius: 50%; width: 150px; height: 150px;">
+    <p>Username: {{ user_profile.user.username }}</p>
+    <a href="{% url 'profile-update' %}" class="btn btn-primary mx-4 btn-sm">Update</a>
+    </div>
+{% endblock %}

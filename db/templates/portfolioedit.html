@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+    <div class="container">
+        <br>
+      <div class="col-12 grid-margin stretch-card">
+          <div class="card">
+              <div class="card-body">
+                  <h2 class="card-title">Edit Portfolio</h2>
+                  {% for message in messages %}
+                    <div class = "alert alert-primary alert-dismissible fade show" role="alert">
+                        {{message}}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="close"></button>
+                    </div>
+                    {% endfor %}
+                  
+                  <form class="forms-sample" method='POST' enctype="multipart/form-data">
+      
+                      {% csrf_token %}
+                      
+                    
+                        <div class="form-group">
+                        <label for="image">Image 1 (recomended size 720x900 px):</label>
+                        <input type="file" class="form-control" name="image1" >
+                        <br>
+                        </div>
+                        <div class="form-group">
+                        <label for="image">Image 2 (recomended size 720x460 px):</label>
+                        <input type="file" class="form-control" name="image2" >
+                        <br>
+                      </div>
+                      <div class="form-group">
+                        <label for="image">Image 3 (recomended size 720x460 px):</label>
+                        <input type="file" class="form-control" name="image3" >
+                        <br>
+                      </div>
+                      <div class="form-group">
+                        <label for="image">Image 4 (recomended size 720x900 px):</label>
+                        <input type="file" class="form-control" name="image4" >
+                        <br>
+                      </div>
+                      <div class="form-group">
+                        <label for="image">Image 5 (recomended size 720x900 px):</label>
+                        <input type="file" class="form-control" name="image5" >
+                        <br>
+                      </div>
+                      <div class="form-group">
+                        <label for="image">Image 6 (recomended size 720x460 px):</label>
+                        <input type="file" class="form-control" name="image6" >
+                        <br>
+                      </div>
+                    
+                    
+                    <button type="submit" class="btn btn-success mr-2">Submit</button>
+                    
+                  </form>
+                  <button class="btn btn-light" onclick="goBack()">Cancel</button>
+      
+                    <script>
+                        function goBack() {
+                            window.history.back();
+                        }
+                    </script>
+              </div>
+          </div>
+      </div>
+      </div>   
+
+
+{% endblock %}

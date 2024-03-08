@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-4 col-md-11">
+    <h2 class="mb-4 text-center">User Withdraw Transactions List</h2>
+
+    <a href="{% url 'user-transaction-history' %}" class="btn btn-primary mb-3">Go to User Deposit Transaction History</a>
+
+    {% if user_transactions %}
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">Reference No</th>
+                    <th scope="col">Card No</th>
+                    <th scope="col">Fertilizer taken</th>
+                    <th scope="col">Amount Deducted</th>
+                    <th scope="col">Card Balance</th>
+                    <th scope="col">Created Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for transaction in user_transactions %}
+                <tr>
+                    <td>{{ transaction.ref_number }}</td>
+                    <td>{{ transaction.uid }}</td>
+                    <td>{{ transaction.fertilizer_taken }} Litres</td>
+                    <td>{{ transaction.fertilizer_cost }} Tsh</td> 
+                    <td>{{ transaction.card_balance_at_transaction }} Tsh</td>
+                    <td>{{ transaction.created_date }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <div class="text-center" style="font-size: 30px; color: red; align-items: center; justify-content: center; text-align: center;">
+            No transactions available now.
+        </div>
+    {% endif %}
+</div>
+
+
+{% endblock %}

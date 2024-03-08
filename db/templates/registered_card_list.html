@@ -1,0 +1,59 @@
+  {% extends 'base.html' %}
+
+  {% block content %}
+    <div class="container mt-4 col-md-11">
+      <div class="container text-center pt-5 mt-5">
+          <a href="{% url 'register-card' %}" class="btn btn-primary">Register Card</a>
+      </div>
+      <h2 class="mb-4">Registered Cards List</h2>
+
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">User</th>
+            <th scope="col">Phone</th>
+            <th scope="col">Card Number</th>
+            <th scope="col">Card Balance</th>
+            <th scope="col">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for card_info in cards_with_balance %}
+            <tr>
+              <td>{{ card_info.user.username }}</td>
+              <td>{{ card_info.phone }}</td>
+              <td>{{ card_info.card_number }}</td>
+              <td>{{ card_info.card_balance }}</td>
+              <td>
+                <a href="{% url 'registered-card-detail' pk=card_info.pk %}"><i class="fa-solid fa-eye" style="color: #0acbee;"></i></a>
+                <a href="{% url 'registered-card-update' pk=card_info.pk %}"><i class="fa-solid fa-pen-to-square" style="color: #2268e2;"></i></a>
+                <a href="{% url 'registered-card-delete' pk=card_info.pk %}"><i class="fa-solid fa-trash-can" style="color: #ec0404;"></i></a>
+              </td>
+            </tr>
+          {% empty %}
+            <tr>
+              <td colspan="5" style="text-align: center;">No registered cards available.</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+
+      <div class="pagination mt-4">
+        <span class="step-links">
+          {% if cards.has_previous %}
+            <a href="?page=1">&laquo; first</a>
+            <a href="?page={{ cards.previous_page_number }}">previous</a>
+          {% endif %}
+
+          <span class="current-page">
+            Page {{ cards.number }} of {{ cards.paginator.num_pages }}.
+          </span>
+
+          {% if cards.has_next %}
+            <a href="?page={{ cards.next_page_number }}">next</a>
+            <a href="?page={{ cards.paginator.num_pages }}">last &raquo;</a>
+          {% endif %}
+        </span>
+      </div>
+    </div>
+  {% endblock %}

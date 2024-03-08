@@ -1,0 +1,163 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<style>
+    .fertilizer-table {
+        border-collapse: collapse;
+        width: 100%;
+        margin-top: 20px; /* Adjust as needed */
+    }
+
+    .fertilizer-table th, .fertilizer-table td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+    }
+
+    .fertilizer-table th {
+        background-color: #f2f2f2;
+    }
+
+    .fertilizer-header {
+        text-align: center;
+    }
+
+    .div-col {
+        margin-left: 10px;
+    }
+
+    .btn-align {
+        margin: auto;
+    }
+</style>
+
+<title>All Machine Transactions</title>
+
+
+    <div class="container">
+        <form class="py-2 pb-4" method="get" action="{% url 'all-machine-transactions' %}">
+            <div class="row">
+              <div class="col-md-2">
+                <label for="start_date">Start Date:</label>
+                <input type="date" class="form-control" name="start_date" id="start_date" required>
+              </div>
+              <div class="col-md-2">
+                <label for="end_date">End Date:</label>
+                <input type="date" class="form-control" name="end_date" id="end_date" required>
+              </div>
+              <div class="col-md-2">
+                <label for="machine_name">Machine Name:</label>
+                <input type="text" class="form-control" name="machine_name" id="machine_name">
+              </div>
+              <div class="col-md-2">
+                <label for="machine_region">Machine Region:</label>
+                <input type="text" class="form-control" name="machine_region" id="machine_region">
+              </div>
+            </div>
+          
+            <div class="row">
+              <div class="col-md-2">
+                <label for="machine_district">Machine District:</label>
+                <input type="text" class="form-control" name="machine_district" id="machine_district">
+              </div>
+              <div class="col-md-2">
+                <label for="machine_ward">Machine Ward:</label>
+                <input type="text" class="form-control" name="machine_ward" id="machine_ward">
+              </div>
+              <div class="col-md-2">
+                <label for="machine_village">Machine Village:</label>
+                <input type="text" class="form-control" name="machine_village" id="machine_village">
+              </div>
+              <!-- Add more rows as needed -->
+          
+              <div class="col-md-2">
+                <label for="machine_village">Filter Transactions:</label>
+                <button type="submit" class="btn btn-smx btn-primary form-control" >Filter</button>
+              </div>
+            </div>
+          </form>
+    </div>
+      
+
+<!-- Display total amount and total volume -->
+<h1 style="color: blueviolet; margin-left: 150px;" class="pt-5">Total Amount of Money Collected = <strong style="color: #007bff;">{{ total_amount|floatformat:1 }} Tsh</strong>  </h1>
+<h1 style="color: blueviolet; margin-left: 150px;">Total Amount of Fertilizer Selled = <strong style="color: #007bff;">{{ total_volume|floatformat:2 }} Litres</strong> </h1>
+
+<div class="col-md-10 py-5">
+    <h1 style="text-align: center;">All Machine Transactions</h1>
+
+    <!-- Transaction Information -->
+    <table class="fertilizer-table">
+        <thead>
+            <tr>
+                <th>Machine Identifier</th>
+                <th>Region</th>
+                <th>District</th>
+                <th>Ward</th>
+                <th>Village</th>
+                <th>Money Collected (Tsh)</th>
+                <th>Amount of Fertilizer</th>
+                <th>Date and Time</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for transaction in transactions %}
+                <tr>
+                    <td>{{ transaction.machine.name }}</td>
+                    <td>{{ transaction.machine.region }}</td>
+                    <td>{{ transaction.machine.district }}</td>
+                    <td>{{ transaction.machine.ward }}</td>
+                    <td>{{ transaction.machine.village }}</td>
+                    <td>{{ transaction.fertilizer_cost }} Tsh</td>
+                    <td>{{ transaction.fertilizer_taken }} Litres</td>
+                    <td>{{ transaction.created_date }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <div class="pagination mt-4">
+        <span class="step-links">
+            {% if transactions.has_previous %}
+                <a href="?page=1">&laquo; first</a>
+                <a href="?page={{ transactions.previous_page_number }}">previous</a>
+            {% endif %}
+
+            <span class="current-page">
+                Page {{ transactions.number }} of {{ transactions.paginator.num_pages }}.
+            </span>
+
+            {% if transactions.has_next %}
+                <a href="?page={{ transactions.next_page_number }}">next</a>
+                <a href="?page={{ transactions.paginator.num_pages }}">last &raquo;</a>
+            {% endif %}
+        </span>
+      </div>
+</div>
+
+<!-- Display total amount for each region -->
+<h2 style="text-align: center; margin-top: 20px;">Total Amount and Volume by Region</h2>
+<table class="fertilizer-table col-md-6">
+    <thead>
+        <tr>
+            <th>Region</th>
+            <th>Total Volume (Litres)</th>
+            <th>Total Amount (Tsh)</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for region_total in regions_totals %}
+            <tr>
+                <td>{{ region_total.machine__region }}</td>
+                <td>{{ region_total.total_volume|floatformat:2 }} Litres</td>
+                <td>{{ region_total.total_amount }}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+
+<!-- Back to Machine List -->
+<p><a class="btn btn-primary btn-align mt-5" href="{% url 'machine-list' %}">Back to Machine List</a></p>
+
+{% endblock content %}

@@ -1,0 +1,120 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container"> 
+      <form method="post">
+        {% csrf_token %}
+        <div class="row mt-5 pt-5 pb-5">
+          <!-- <div class="col col-md-4">
+            <div class="form-group">
+              {{ form.user.label_tag }}
+              {{ form.user }}
+            </div>
+          </div> -->
+          <div class="col col-md-4">
+            <div class="form-group">
+              {{ form.title.label_tag }}
+              {{ form.title }}
+            </div>
+          </div>
+          <div class="col col-md-4">
+            <div class="form-group">
+              {{ form.first_name.label_tag }}
+              {{ form.first_name }}
+            </div>
+          </div>
+          <div class="col col-md-4">
+            <div class="form-group">
+              {{ form.last_name.label_tag }}
+              {{ form.last_name }}
+            </div>
+          </div>
+          <div class="col col-md-4">
+            <div class="form-group">
+              {{ form.gender.label_tag }}
+              {{ form.gender }}
+            </div>
+          </div>
+          <div class="col col-md-4">
+            <div class="form-group">
+              {{ form.d_o_b.label_tag }}
+              {{ form.d_o_b }}
+            </div>
+          </div>
+          <div class="col col-md-4">
+            <div class="form-group">
+              {{ form.email.label_tag }}
+              {{ form.email }}
+            </div>
+          </div>
+          <div class="col col-md-4">
+            <div class="form-group">
+              {{ form.address.label_tag }}
+              {{ form.address }}
+            </div>
+          </div>
+          <div class="col col-md-4">
+            <div class="form-group">
+              {{ form.phone_no1.label_tag }}
+              {{ form.phone_no1 }}
+            </div>
+          </div>
+          <div class="col col-md-4">
+            <div class="form-group">
+              {{ form.farm_size.label_tag }}
+              {{ form.farm_size }}
+            </div>
+          </div>
+          <div class="col col-md-4">
+            <div class="form-group">
+              {{ form.crop_type1.label_tag }}
+              {{ form.crop_type1 }}
+            </div>
+          </div>
+          <div class="col col-md-4">
+            <div class="form-group">
+              {{ form.crop_type2.label_tag }}
+              {{ form.crop_type2 }}
+            </div>
+          </div>
+          <div class="col col-md-4">
+            <div class="form-group">
+              {{ form.crop_type3.label_tag }}
+              {{ form.crop_type3 }}
+            </div>
+          </div>
+          <div class="col col-md-4">
+            <div class="form-group">
+              {{ form.nation.label_tag }}
+              {{ form.nation }}
+            </div>
+          </div>
+          <div class="col col-md-4">
+            <div class="form-group">
+              {{ form.region.label_tag }}
+              {{ form.region }}
+            </div>
+          </div>
+          <div class="col col-md-4">
+            <div class="form-group">
+              {{ form.district.label_tag }}
+              {{ form.district }}
+            </div>
+          </div>
+          <div class="col col-md-4">
+            <div class="form-group">
+              {{ form.ward.label_tag }}
+              {{ form.ward }}
+            </div>
+          </div>
+          <div class="col col-md-4">
+            <div class="form-group">
+              {{ form.village.label_tag }}
+              {{ form.village }}
+            </div>
+          </div>
+        </div>
+      <button type="submit" class="btn btn-primary btn-lg mb-2" style="margin-left: 20%;">Register Farmer</button>
+      <a href="{% url 'farmer-list' %}" class="btn btn-primary btn-lg mb-2 text-right float-right" style="margin-right: 20%;">View List of Farmers</a>
+    </form>
+</div>
+{% endblock content %}

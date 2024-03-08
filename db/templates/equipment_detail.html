@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <title>Equipment Detail</title>
+
+    <h1>Equipment Detail</h1>
+    
+    <!-- Equipment Information -->
+    <h2>Equipment Information</h2>
+    <p><strong>Name:</strong> {{ equipment_item.name }}</p>
+    <p><strong>Type:</strong> {{ equipment_item.type }}</p>
+    <p><strong>Serial Number:</strong> {{ equipment_item.serial_number }}</p>
+    <!-- Add more equipment information fields as needed -->
+
+    <!-- Purchase Information -->
+    <h2>Purchase Information</h2>
+    <p><strong>Purchase Date:</strong> {{ equipment_item.purchase_date }}</p>
+    <p><strong>Purchase Price:</strong> {{ equipment_item.purchase_price }}</p>
+    <!-- Add more purchase information fields as needed -->
+
+    <!-- Maintenance Information -->
+    <h2>Maintenance Information</h2>
+    <p><strong>Last Maintenance Date:</strong> {{ equipment_item.last_maintenance_date }}</p>
+    <p><strong>Maintenance Notes:</strong> {{ equipment_item.maintenance_notes }}</p>
+    <!-- Add more maintenance information fields as needed -->
+
+    <!-- Additional Sections and Fields -->
+    <!-- You can add more sections and fields here as needed for your specific use case -->
+
+    <!-- Back to Equipment List -->
+    <p><a href="{% url 'equipment-list' %}">Back to Equipment List</a></p>
+
+{% endblock content %}

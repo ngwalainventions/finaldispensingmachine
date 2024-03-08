@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block content %}
+    <title>Subcomponent Detail</title>
+
+    <h1>Subcomponent Detail</h1>
+    
+    <!-- Subcomponent Information -->
+    <h2>Subcomponent Information</h2>
+    <p><strong>Name:</strong> {{ subcomponent.name }}</p>
+    <p><strong>Type:</strong> {{ subcomponent.type }}</p>
+    <p><strong>Serial Number:</strong> {{ subcomponent.serial_number }}</p>
+    <!-- Add more subcomponent information fields as needed -->
+
+    <!-- Description -->
+    <h2>Description</h2>
+    <p>{{ subcomponent.description }}</p>
+    <!-- Add more description fields as needed -->
+
+    <!-- Additional Sections and Fields -->
+    <!-- You can add more sections and fields here as needed for your specific use case -->
+
+    <!-- Back to Subcomponent List -->
+    <p><a href="{% url 'subcomponent-list' %}">Back to Subcomponent List</a></p>
+{% endblock content %}

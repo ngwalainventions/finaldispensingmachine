@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-4 col-md-11">
+    <div class="container text-center pt-5 mt-5">
+        <a href="{% url 'create-receipt' %}" class="btn btn-primary">Create Receipt</a>
+    </div>
+    <h2 class="mb-4">Receipt List</h2>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">Receipt Number</th>
+                <th scope="col">Serial Number</th>
+                <th scope="col">Supplier</th>
+                <th scope="col">Cost</th>
+                <th scope="col">Category</th>
+                <th scope="col">Date</th>
+                <th scope="col">Item Name</th>
+                <!-- <th scope="col">Picture</th> -->
+                <th scope="col">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for receipt in receipts %}
+            <tr>
+                <td>{{ receipt.number }}</td>
+                <td>{{ receipt.serial }}</td>
+                <td>{{ receipt.supplier }}</td>
+                <td>{{ receipt.price }}</td>
+                <td>{{ receipt.category }}</td>
+                <td>{{ receipt.date }}</td>
+                <td>{{ receipt.item }}</td>
+                <!-- <td><img src="{{ receipt.picture }}" alt="{{ receipt.item }}" width="70"></td> -->
+                <td>
+                    <a href="{% url 'receipt-detail' pk=receipt.pk %}"><i class="fa-solid fa-eye" style="color: #2268e2;"></i></a>
+                    <a href="{% url 'receipt-update' receipt_id=receipt.pk %}"><i class="fa-solid fa-pen-to-square" style="color: #2268e2;"></i></a>
+                    <a href="{% url 'receipt-delete' receipt_id=receipt.pk %}"><i class="fa-solid fa-trash-can" style="color: #ec0404;"></i></a>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="8">No receipts available.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <div class="pagination mt-4">
+        <span class="step-links">
+            {% if receipts.has_previous %}
+                <a href="?page=1">&laquo; first</a>
+                <a href="?page={{ receipts.previous_page_number }}">previous</a>
+            {% endif %}
+
+            <span class="current-page">
+                Page {{ receipts.number }} of {{ receipts.paginator.num_pages }}.
+            </span>
+
+            {% if receipts.has_next %}
+                <a href="?page={{ receipts.next_page_number }}">next</a>
+                <a href="?page={{ receipts.paginator.num_pages }}">last &raquo;</a>
+            {% endif %}
+        </span>
+    </div>
+</div>
+{% endblock %}

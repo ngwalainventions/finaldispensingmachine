@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <style>
+        .p-font{
+            font-size: 25px;
+        }
+    </style>
+    <div class="container">
+        <p class="p-font">Add Fertilizer to {{ machine.name }}</p>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <div class="row">
+            <button class="btn btn-primary mx-1" type="submit">Add Fertilizer</button>
+        </form>
+        <a class="btn btn-primary" href="{% url 'machine-detail' pk=machine.pk %}">Back to Machine Detail</a>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<style>
+    .p-font{
+        font-size: 20px;
+    }
+</style>
+    <div class="container">
+        <p class="p-font">Recharge card {{ user_card.card_number }}</p>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <div class="row mx-2">
+            <button class="btn btn-primary mx-2" type="submit">Recharge</button>
+        </form>
+        <a class="btn btn-primary" href="{% url 'registered-card-detail' pk=user_card.pk %}">Back to Machine Detail</a>
+    </div>
+    </div>
+{% endblock %}

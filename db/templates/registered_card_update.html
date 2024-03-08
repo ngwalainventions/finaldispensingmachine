@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="container mt-4 col-md-11">
+    <h2 class="mb-4">Update Card</h2>
+
+    <form method="post">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit" class="btn btn-primary mt-4">Update Card</button>
+    </form>
+
+    <a href="{% url 'registered-card-detail' pk=card.pk %}" class="btn btn-primary mt-4">Cancel</a>
+  </div>
+{% endblock %}

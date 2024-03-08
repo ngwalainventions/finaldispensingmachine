@@ -1,0 +1,13 @@
+<!-- post_detail.html -->
+
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="container mt-5 col-md-8">
+        <h2 class="pt-3 text-center">{{ post.title }}</h2>
+        <img src="{{ post.image.url }}" class="img-fluid pt-3" alt="{{ post.title }}">
+        <p class="pt-5">{{ post.content }}</p>
+        <p><strong><small>Posted on {{ post.created_at|date:"j F Y" }} by: {{ post.author }} </small></strong></p>
+    </div>
+{% endblock content %}

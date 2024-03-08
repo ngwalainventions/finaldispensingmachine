@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<style>
+    .card {
+        width: 350px;
+        margin: 10px auto; /* Adjusted margin */
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .card-body {
+        padding: 20px;
+    }
+
+    .card-title {
+        font-size: 1.5rem;
+        margin-bottom: 10px;
+    }
+
+    .card-text {
+        font-size: 1rem;
+    }
+
+    .card-link {
+        color: #007bff;
+        text-decoration: none;
+    }
+</style>
+
+    <div class="card">
+        <div class="card-body">
+            <h2 class="card-title">Thank You for Registering!</h2>
+            <p class="card-text">
+                We appreciate your registration and trust in our system. You can now 
+                <a href="{% url 'login' %}" class="card-link">log in</a> to access more information.
+            </p>
+        </div>
+    </div>
+{% endblock %}

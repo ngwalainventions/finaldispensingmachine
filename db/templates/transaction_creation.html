@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container col-md-3">
+    <h2>Create Transaction</h2>
+    
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        
+        {% if form.errors %}
+            <div class="alert alert-danger" role="alert">
+                {% for field, errors in form.errors.items %}
+                    {% if field == None %}
+                        <strong class="error-message" style="color: red;">{{ errors.0 }}</strong><br>
+                    {% else %}
+                        <strong style="color: red;">Error:</strong> <span class="error-message" style="color: red;">{{ errors.0 }}</span><br>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        {% endif %}
+        
+        <script>
+            // Update volume field based on the amount entered
+            document.getElementById('id_fertilizer_cost').addEventListener('input', function () {
+                var amount = parseFloat(this.value);
+                var volumeField = document.getElementById('id_fertilizer_taken');
+                if (!isNaN(amount)) {
+                    var volume = amount / 10000;
+                    volumeField.value = volume.toFixed(2);
+                } else {
+                    volumeField.value = '';
+                }
+            });
+        </script>
+        <button type="submit" class="btn btn-primary">Create Transaction</button>
+    </form>
+</div>
+{% endblock content %}

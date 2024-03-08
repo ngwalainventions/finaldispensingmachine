@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="container mt-4 col-md-11">
+        <div class="text-center pt-5 mt-5">
+            <a href="{% url 'equipment-registration' %}" class="btn btn-primary">Register Equipment</a>
+        </div>
+        <h2 class="mb-4">Equipment List</h2>
+
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">Serial Number</th>
+                    <th scope="col">Equipment Name</th>
+                    <th scope="col">Equipment Model Number</th>
+                    <th scope="col">Classification</th>
+                    <th scope="col">Equipment Color</th>
+                    <th scope="col">Equipment Location</th>
+                    <th scope="col">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for equipment in equipment_items %}
+                <tr>
+                    <td>{{ equipment.serial }}</td>
+                    <td>{{ equipment.name }}</td>
+                    <td>{{ equipment.models_no }}</td>
+                    <td>{{ equipment.category }}</td>
+                    <td>{{ equipment.color }}</td>
+                    <td>{{ equipment.location }}</td>
+                    <td>
+                        <a href="{% url 'equipment-detail' pk=equipment.pk %}"><i class="fa-solid fa-eye" style="color: #2268e2;"></i></a>
+                        <a href="{% url 'equipment-update-info' equipment_id=equipment.pk %}"><i class="fa-solid fa-pen-to-square" style="color: #2268e2;"></i></a>
+                        <a href="{% url 'equipment-deletion' equipment_id=equipment.pk %}"><i class="fa-solid fa-trash-can" style="color: #ec0404;"></i></a>
+                      </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="7">No equipment items available.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <!-- Pagination controls -->
+        <div class="pagination mt-4">
+            <span class="step-links">
+                {% if equipment_items.has_previous %}
+                    <a href="?page=1">&laquo; first</a>
+                    <a href="?page={{ equipment_items.previous_page_number }}">previous</a>
+                {% endif %}
+
+                <span class="current-page">
+                    Page {{ equipment_items.number }} of {{ equipment_items.paginator.num_pages }}.
+                </span>
+
+                {% if equipment_items.has_next %}
+                    <a href="?page={{ equipment_items.next_page_number }}">next</a>
+                    <a href="?page={{ equipment_items.paginator.num_pages }}">last &raquo;</a>
+                {% endif %}
+            </span>
+        </div>
+    </div>
+{% endblock content %}

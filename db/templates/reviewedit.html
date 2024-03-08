@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+    <div class="container">
+        <br>
+      <div class="col-12 grid-margin stretch-card">
+          <div class="card">
+              <div class="card-body">
+                  <h2 class="card-title">Edit Review</h2>
+                  
+                  
+                  <form class="forms-sample" method='POST' enctype="multipart/form-data">
+      
+                      {% csrf_token %}
+                      
+                    <div class="form-group">
+                      <label for="name">name</label>
+                      <input type="text" class="form-control" name="name" value="{{s.name}}">
+                    </div>
+                    <br>
+
+                    <div class="form-group">
+                        <label for="name">username</label>
+                        <input type="text" class="form-control" name="username" value="{{s.username}}">
+                      </div>
+                      <br>
+
+                      <div class="form-group">
+                        <label for="gender">Body:</label>
+                        <textarea class="form-control" name="body" rows="5">{{s.body}}</textarea>
+                      </div>
+                    <br>
+
+                      <div class="form-group">
+                        <label for="name">time_posted</label>
+                        <input type="text" class="form-control" name="time_posted" value="{{s.time_posted}}">
+                      </div>
+                      <br>
+
+                      <div class="form-group">
+                        <label for="name">views</label>
+                        <input type="text" class="form-control" name="views" value="{{s.views}}">
+                      </div>
+                      <br>
+
+                      <div class="form-group">
+                        <label for="name">likes</label>
+                        <input type="text" class="form-control" name="likes" value="{{s.likes}}">
+                      </div>
+                      <br>
+
+                      <div class="form-group">
+                        <label for="name">comments</label>
+                        <input type="text" class="form-control" name="comments" value="{{s.comments}}">
+                      </div>
+                      <br>
+
+                      <div class="form-group">
+                        <label for="name">shares</label>
+                        <input type="text" class="form-control" name="shares" value="{{s.shares}}">
+                      </div>
+                      <br>
+
+                    
+                    
+                  
+                    <div class="form-group">
+                      <label for="image">Select Image (recomended size 600x600 px):</label>
+                      <input type="file" class="form-control" name="image" >
+                      <br>
+                    </div>
+                    
+                    
+                    <button type="submit" class="btn btn-success mr-2">Submit</button>
+                    
+                  </form>
+                  <button class="btn btn-light" onclick="goBack()">Cancel</button>
+      
+                    <script>
+                        function goBack() {
+                            window.history.back();
+                        }
+                    </script>
+              </div>
+          </div>
+      </div>
+      </div>   
+
+{% endblock %}

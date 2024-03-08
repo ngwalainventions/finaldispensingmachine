@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <h2 class="mt-4 mb-4">Transaction Detail</h2>
+    
+    <div class="row">
+        <div class="col-md-6">
+            <dl class="row">
+                <dt class="col-sm-4">Reference Number:</dt>
+                <dd class="col-sm-8">{{ transaction.ref_number }}</dd>
+                
+                <dt class="col-sm-4">Card Number:</dt>
+                <dd class="col-sm-8">{{ transaction.uid }}</dd>
+                
+                <dt class="col-sm-4">Amount added:</dt>
+                <dd class="col-sm-8">{{ transaction.fertilizer_cost }}</dd>
+                
+                <dt class="col-sm-4">Balance:</dt>
+                <dd class="col-sm-8">{{ transaction.card_balance }}</dd>
+                
+                <dt class="col-sm-4">Volume:</dt>
+                <dd class="col-sm-8">{{ transaction.fertilizer_taken }}</dd>
+                
+                <dt class="col-sm-4">Created Date:</dt>
+                <dd class="col-sm-8">{{ transaction.created_date }}</dd>
+            </dl>
+        </div>
+    </div>
+    
+    <div class="row mt-4">
+        <div class="col-md-12">
+            <a href="{% url 'transaction-list' %}" class="btn btn-primary">Back to Transactions</a>
+        </div>
+    </div>
+</div>
+{% endblock content %}

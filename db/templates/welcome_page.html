@@ -1,0 +1,779 @@
+{% extends 'base.html' %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Welcome to Ngwala Inventions</title>
+</head>
+<body>
+    {% block content %}
+    <style>
+        body {
+            color: white;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            font-family: 'Lora', serif;
+            overflow-x: hidden;
+            max-width: 100%;
+        }
+        footer{
+            overflow: hidden;
+            max-width: 100%;
+        }
+        .hero {
+            margin: 70px auto;
+            max-width: 900px;
+            padding: 20px;
+            background-color: rgba(19, 101, 243, 0.896);
+            border-radius: 10px;
+        }
+        .hero-h1{
+            color: #0de27f;
+        }
+
+        h1 {
+            font-size: 45px;
+        }
+
+        .p-hero {
+            font-size: 35px;
+        }
+        .p-about-hero {
+            font-size: 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            margin: 10px;
+            padding: 15px 30px;
+            font-size: 18px;
+            text-align: center;
+            text-transform: uppercase;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .btn-get-started {
+            background-color: #4CAF50;
+            color: white;
+        }
+        
+        .btn-services {
+            background-color: #FF5722;
+            color: white;
+        }
+        
+        /* Blink Animation */
+        @keyframes blink {
+            0%, 100% { visibility: hidden; }
+            50% { visibility: visible; }
+        }
+        
+        .blink {
+            animation: blink 1s steps(1) infinite;
+        }
+        .blink-color{
+            color: #0de27f;
+        }
+        .about-hero {
+            margin: 0 auto;
+            background-color: #2268e2;
+            text-align: left;
+        }
+        .about-hero-h1{
+            text-align: center;
+        }
+        .p-font{
+            font-size: 25px;
+        }
+        .social-feeds {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .post {
+            border: 1px solid #ccc;
+            margin-bottom: 20px;
+            padding: 10px;
+        }
+
+        .post img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .post-content {
+            margin-top: 10px;
+        }
+
+        .post-actions {
+            margin-top: 10px;
+        }
+        .font-fm{
+            font-size: 25px;
+        }
+        .card-body{
+            color: black;
+        }
+        .rounded-circle{
+            width: 400px;
+            height: 370px;
+        }
+        
+        /* Add this to your existing CSS */
+        .animate-text {
+            display: inline-block;
+            overflow: hidden;
+            white-space: nowrap;
+            animation: revealText 5s steps(40) forwards;
+        }
+
+        @keyframes revealText {
+            to {
+                width: 100%;
+            }
+        }
+
+        .imagesize{
+            height: 350px;
+            width: 350px;
+        }
+        .slides{
+            color:black;
+        }
+        .card-img-top{
+            border-radius: 50%;
+            margin: auto;
+            padding-top: 9px;
+            width: 190px;
+            height: 200px;
+        }
+        .img-thumbnail{
+            padding-top: 4px;
+            width: 350px;
+            height: 300px;
+        }
+        
+        /* Reset default padding and margin for list elements */
+        ul, li {
+            padding: 0;
+            margin: 0;
+            list-style: none;
+        }
+
+        .partner-section {
+            display: grid;
+            grid-template-columns: repeat(1, 1fr); /* Adjust the number of columns as needed */
+            gap: 7px; /* Adjust the gap between logos as needed */
+        }
+
+        .partner-logo {
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s; /* Add transitions for smooth hover effect */
+        }
+
+        .partner-logo img {
+            max-width: 40%;
+            height: auto;
+        }
+
+        .partner-logo:hover {
+            transform: scale(0.5); /* Enlarge the logo on hover */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Add a shadow on hover */
+        }
+        .section-title {
+            text-align: center;
+            margin: 20px 0;
+            position: relative;
+        }
+
+        .section-line {
+            width: 40%; /* Adjust the line width as needed */
+            height: 1px;
+            background-color: #000; /* Adjust the line color as needed */
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        .section-title h2 {
+            display: inline-block;
+            background-color: #fff; /* Adjust the background color of the title as needed */
+            padding: 0 20px; /* Adjust padding as needed */
+            position: relative;
+            z-index: 1;
+        }
+
+
+        .contact-section {
+            background-color: #f4f4f4; /* Adjust the background color as needed */
+            padding: 40px 0;
+            text-align: center;
+        }
+
+        .contact-cont {
+            max-width: 800px;
+            margin: 0 auto;
+            /* padding: 20px; */
+            background-color: #fff; /* Adjust the background color as needed */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /*Add a box shadow for the container*/
+        }
+
+        .contact-cont h2 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .contact-form {
+            text-align: left;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc; /* Adjust the border color as needed */
+            border-radius: 4px;
+        }
+
+        textarea {
+            resize: vertical;
+        }
+
+        button[type="submit"] {
+            background-color: #007bff; /* Adjust the button background color as needed */
+            color: #fff; /* Adjust the button text color as needed */
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #0056b3; /* Adjust the button hover color as needed */
+        }
+
+        .company-card {
+            max-width: 300px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff; /* Adjust the background color as needed */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Add a box shadow for the card */
+            text-align: center;
+            font-family: Arial, sans-serif; /* Adjust the font family as needed */
+        }
+
+        h3 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        p {
+            margin: 10px 0;
+            font-size: 16px;
+        }
+
+        strong {
+            font-weight: bold;
+        }
+
+        .paragraph{
+            font-size: 25px;
+        }
+        .video {
+            padding-top: 10px;
+            max-width: 100%;
+            height: auto;
+        }
+        .container {
+            max-width: 100%;
+        }
+
+        /* Add your custom styles here */
+        .vision-card {
+            background-color: #f8f9fa;
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            text-align: left;
+        }
+
+        .vision-card h2 {
+            color: #00d4ff;
+            font-family: Verdana;
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+
+        .vision-card p {
+            font-size: 25px;
+            color: #2d2f77;
+            position: relative;
+            padding-left: 30px;
+            margin-bottom: 15px;
+        }
+
+        .vision-card p:before {
+            content: " ";
+            display: inline-block;
+            width: 20px; /* Increased circle size */
+            height: 20px; /* Increased circle size */
+            background-color: #4CAF50;
+            border-radius: 50%;
+            position: absolute;
+            left: 0px; /* Adjusted position */
+            top: 8px;
+            text-align: center;
+            line-height: 40px;
+        }
+
+        .vision-card p:after {
+            content: "→"; /* White arrow character */
+            color: #fff;
+            font-size: 15px; /* Arrow size */
+            position: absolute;
+            left: 2px; /* Adjusted position */
+            top: 6px; /* Adjusted position */
+        }
+
+
+
+    </style>
+
+<header class="bg-dark py-3" style="background-image: radial-gradient(circle, #1df0b0 0%, #00d4ff 100%);">
+    <div class="container px-5">
+        <div class="row gx-5 align-items-center justify-content-center">
+            <div class="col-lg-12 col-lx-7 col-lxx-6">
+                <div class="my-5 text-center text-xl-start">
+                    <h1>NGWALA INVENTION PRODUCTS</h1>
+                    <h1 id="job-title" style="color: black;" class="display-5 fw-bolder text-white mb-2"><span id="job-title-text"></span></h1>
+                    <div class="d-grid ap-3 d-sm-flex justify-content-sm-center justify-content-xl-start">
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-5 col-xxl-6 d-xl-block text-center"><img src="{% static 'images/logo.png' %}" alt="" class="img-fluid rounded-circle me-3 my-4" style="border-radius: 70%;"></div>
+        </div>
+    </div>
+</header>
+
+<!-- video section  -->
+    <!-- <video autoplay controls class="video">
+        <source src="{% static 'videos/juliana.mp4' %}" type="video/mp4">
+    </video>
+   -->
+    <!-- Hero Section -->
+    <section class="hero pb-2">
+        <h1 class="hero-h1">NG'WALA INVENTIONS</h1>
+        <p class="p-hero">We are Transforming <span class="blink blink-color">social-environmental</span> challenges into opportunities.</p>
+    </section>
+    <a href="#about-us" class="btn btn-get-started">Get Started</a>
+    <a href="#services" class="btn btn-services">Services We Provide</a>
+
+
+
+    <!-- about us, efforts and impact sections -->
+    <div class="container mt-5 col-md-12">
+        <h2>Social Feeds</h2>
+        <div class="row">
+            <div class="col-md-3" >
+                <div class="card mb-3 border-0">
+                 <img src="{% static 'images/logo.png ' %}" class="img-thumbnail" alt="...">
+                    <div class="card-body">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card mb-3 border-0">
+                 <img src="{% static 'images/logo.png ' %}" class="img-thumbnail" alt="...">
+                    <div class="card-body">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card mb-3 border-0">
+                 <img src="{% static 'images/logo.png ' %}" class="img-thumbnail" alt="...">
+                    <div class="card-body">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card mb-3 border-0">
+                 <img src="{% static 'images/logo.png ' %}" class="img-thumbnail" alt="...">
+                    <div class="card-body">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- About Us Section -->
+    <!-- End About Us Section -->
+
+    <div class="container col-md-12 pt-4 font-fm">
+        <section>
+            <div class="row pb-3">
+                <!-- Mission Section -->
+                <div class="col-md-6 pb-2">
+                    <div class="card mission-card">
+                        <div class="card-body">
+                            
+                            <h2 class="card-title text-primary"><i class="fa-solid fa-people-roof" style="color: hsl(217, 82%, 48%);"></i>&MediumSpace; Mission</h2>
+                            <p class="p-font card-text text-success">
+                                To become the leading regional producer and distributor of organic pesticides & fertilizer through an innovative digital delivery system that supports rural farmers.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Vision Section -->
+                <div class="col-md-6">
+                    <div class="card our-vision-card">
+                        <div class="card-body">
+                            
+                            <h2 class="card-title text-primary"><i class="fa-solid fa-eye-low-vision" style="color: hsl(217, 82%, 48%);;"></i>&MediumSpace; Vision</h2>
+                            <p class="p-font card-text text-success">
+                                “Organic agriculture in Africa is cost-effective and sustainable - facilitating agricultural solutions to hunger, poverty, climate, environment and health.”
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+
+    <section class="py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-10 mx-auto">
+                    <div class="vision-card">
+                        <h2 style="text-align: center;">Our Vision and Impact</h2>
+                        <p class="paragraph"> In-house production of organic pesticides and fertilizers from organic wastes through enzymatic processes, microbes, and green nanotechnology.</p>
+                        <p class="paragraph"> Selling in-house and third-party organic pesticides and fertilizer directly to farmers for $7 per liter, which is $2 less than competitors.</p>
+                        <p class="paragraph"> Save $150 in transportation costs and 120 hours of travel time spent by a farmer each season when they purchase organic fertilizer and pesticides at town agro-shops.</p>
+                        <p class="paragraph"> Increase soil fertility, plant & soil capacity to retain water and absorb greenhouse gases supporting climate sequestration.</p>
+                        <p class="paragraph"> Increase crop production from 1.5 to 3 tons per hectare and farmer income from less than $1 to more than $5 per day.</p>
+                        <p class="paragraph"> Support a 90% reduction of human poisoning and land and water pollution cases caused by the chemical exposure to farm chemicals.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+<div class="container col-md-12 pt-2 font-fm">
+    <div>
+        <h1 id="services" style="font-family: Verdana; padding-top: 50px; font-size: 50px; color: rgb(0, 212, 255);">Services</h1>
+    </div>
+    <section class="services-section" style="background-color: #ffffff; color: #000000; padding: 20px; display: flex; flex-direction: row-reverse;">
+        <div style="flex: 1;">
+            <h3><strong>Production of Organic Pesticides and Fertilizer</strong></h3>
+            <p class="paragraph" style="text-align: left;"> <!-- Added text-align:left; -->
+                We use organic wastes such as garbage and fruit peels from markets, households, and farms mixed with botanical extracts to form two-in-one organic pesticides and fertilizers (Ngwala Organics). The product is produced without energy consumption using complex natural enzymatic processes, microbes, and green nanotechnology. The low-cost Ngwala Organics serves as the best and most effective organic pesticide and fertilizer for sustainable farming compared to the usual chemical pesticides and fertilizers. The product is environment-friendly and produced with high technology, having a shelf life of more than 2 years and a very high concentration compared to other organic pesticides and fertilizers in the market. It supports human safety, soil fertility, increasing plant and soil capacity to retain water, and conserving biodiversity, resulting in human safety, high yields, and climate sequestration.
+            </p>
+        </div>
+        <div style="flex: 1;">
+            <img src="{% static 'images/organic pesticides.png' %}" alt="" srcset="" style="max-width: 100%; height: auto;">
+        </div>
+    </section>
+    <section class="services-section" style="background-color: #ffffff; color: #000000; padding: 20px; display: flex; flex-direction: row;">
+        <div style="flex: 1;">
+            <h3><strong>Digital organic fertilizer and pesticide dispensing machine</strong></h3>
+            <p class="paragraph" style="text-align: left;"> <!-- Added text-align:left; -->
+                Designing, manufacturing, and deploying Ngwala Smart Delivers at a large scale is used to deliver high-quality organic pesticides and fertilizers to small-holder farmers on demand, pay as you farm, and at the lowest cost. The machines are connected to a mobile app to allow farmers to track expenditures, quantities, and impacts. The system is a substitute for the traditional way of distributing pesticides and fertilizer using packages or containers. It delivers high-quality organic pesticides and fertilizers and provides easy access to farm inputs, allowing farmers to pay via mobile money and receive the exact quantities and refill containers for zero waste farming. Also provides access to credit services for farmers, particularly young people and women with limited financial resources, to purchase farm inputs in cash.
+            </p>
+        </div>
+        <div style="flex: 1;">
+            <img src="{% static 'images/digital organic fertilizer.png' %}" alt="" style="max-width: 100%; height: auto;">
+        </div>
+    </section>
+</div>
+
+    
+
+    <!-- social feeds  -->
+
+    <!-- social_feeds.html -->
+
+
+    <div class="container mt-5 col-md-12">
+        <h2 style="font-family:Verdana; padding-top: 30px; padding-bottom: 10px; font-size: 50px; color: rgb(0, 212, 255);">Social Feeds</h2>
+        <div class="row">
+            <div class="col-md-3">
+                <div class="card mb-3">
+                    <img src="{% static 'images/logo.png' %}"  class="card-img-top" alt="Post 1">
+                    <div class="card-body">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card mb-3">
+                    <img src="{% static 'images/logo.png' %}"  class="card-img-top" alt="Post 1">
+                    <div class="card-body">
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="card mb-3">
+                    <img src="{% static 'images/logo.png' %}"  class="card-img-top" alt="Post 2">
+                    <div class="card-body">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card mb-3">
+                    <a href="{% url 'social-feeds' %}">
+                        <img src="{% static 'images/view more.png' %}"  class="card-img-top" alt="Post 3">
+                    </a>
+                    <div class="card-body">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+        <!-- Container for both concerns -->
+        <div class="container col-md-12 font-fm">
+            <!-- First Service Section -->
+            <h2 style="font-family:Verdana; padding-top: 30px; font-size: 50px; color: rgb(5, 188, 224);">Concern</h2>
+            <section class="services-section" style="background-color: #ffffff; color: #000000; padding: 20px; display: flex; flex-direction: row-reverse;">
+                <div style="flex: 1;">
+                    <h3><strong>Climate and Evironment</strong></h3>
+                    <p class="paragraph">
+                        Climate change and pollution from farm chemicals and plastic waste/containers have been on the rise, resulting in human poisoning, water and land pollution. We produce environment friendly, low cost organic pesticides and fertilizer, replacing chemical farm inputs. Its distribution is done using Ngwala Smart Delivers, which allow farmers to refill their canisters.
+                    </p>
+                </div>
+                <div style="flex: 1;">
+                    <img src="{% static 'images/climate and environment.jpg' %}" alt="" srcset="" style="max-width: 100%; height: auto;">
+                </div>
+            </section>
+    
+            <!-- Second Service Section -->
+            <section class="services-section" style="background-color: #ffffff; color: #000000; padding: 20px; display: flex; flex-direction: row;">
+                <div style="flex: 1;">
+                    <h3><strong>Smart Logistics</strong></h3>
+                    <p class="paragraph">
+                        Smart Logistics: Last mile delivery of farm inputs has been a challenge to farmers especially when comes to poor condition of rural infrastructures. Ngwala Inventions uses large trucks over small ones (economies of scale) for distributing organic pesticides and fertilizer to refill our Smart Delivers. Our innovative smart logistics platform allows us to efficiently deliver organic farm input to farmers on the farm at the lowest cost while reducing carbon emissions.
+                    </p>
+                </div>
+                <div style="flex: 1;">
+                    <!-- Add your image here -->
+                    <img src="{% static 'images/smart log2.jpg' %}" alt="" style="max-width: 100%; height: auto;">
+                </div>
+            </section>
+
+            <!-- Third Service Section -->
+            <section class="services-section" style="background-color: #ffffff; color: #000000; padding: 20px; display: flex; flex-direction: row-reverse;">
+                <div style="flex: 1;">
+                    <h3><strong>Pay as you Farm Technology</strong></h3>
+                    <p class="paragraph">
+                        Farmers want high-quality organic farm inputs, but the high up-front cost gets in the way. Our smart delivery technology empowers them to conveniently pay as they farm with their mobile money account.
+                    </p>
+                </div>
+                <div style="flex: 1;">
+                    <!-- Add your image here -->
+                    <img src="{% static 'images/pay as you farm technology.jpg' %}" alt="" style="max-width: 100%; height: auto;">
+                </div>
+            </section>
+
+            <!-- Fourth Service Section -->
+            <section class="services-section" style="background-color: #ffffff; color: #000000; padding: 20px; display: flex; flex-direction: row-reverse;">
+                <div style="flex: 1;">
+                    <h3><strong>Farm Better</strong></h3>
+                    <p class="paragraph">
+                        We work hard day and night to offer farmers high quality organic pesticides and fertilizer at lowest cost, on time, on farm, on pay as farm, on demand and on credit as the substitute of chemical farm inputs and traditional way of distributing using containers. We are on our way to switch 100 million farmers in Africa from using chemical farm inputs purchased from Agro-shops located in Town very far from farms by the year 2025
+                    </p>
+                </div>
+            </section>
+        </div>
+        <!-- team members section -->
+        <section id="team" class="section-bg" style="background-color: #F5F6F7;">
+            <div class="container" style="justify-content: center;" data-aos="fade-up">
+                <header class="section-header">
+                    <h3 style="font-family:Verdana; padding-top: 30px; font-size: 50px; color: rgb(0, 212, 255);">Team</h3>
+                    <h3 style="color: #000000;">Management, Research, Development, Technical and Advisory Team</h3>
+                </header>
+        
+                <div class="row justify-content-center">
+                    {% for team_member in team_members %}
+                    <div class="col-lg-4 col-md-6 pt-2 pb-2">
+                        <div class="card h-100" data-aos="fade-up" data-aos-delay="100">
+                            <img src="{{ team_member.image.url }}" alt="{{ team_member.teammember_name }}" class="card-img-top">
+                            <div class="card-body d-flex flex-column">
+                                <h4 style="color: rgb(38, 127, 245);" class="text-muted">{{ team_member.teammember_name }}</h4>
+                                <p style="color: green; font-size: 20px; font-family:Verdana;">{{ team_member.position }}</p>
+                                <p style="color: black; font-size: 17px;" class="text-muted flex-grow-1">{{ team_member.bio }}</p>
+                                <div class="social">
+                                    <a href="#"><i class="fab fa-twitter"></i></a>
+                                    <a href="#"><i class="fab fa-facebook"></i></a>
+                                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                                    <a href="#"><i class="fab fa-instagram"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+        
+
+
+          <!-- partners section -->
+          <section class="partner-section">
+            <div class="section-title">
+                <h2 style="color: #00d4ff; padding-top: 30px; font-size: 50px;">Main Partners</h2>
+            </div>
+            <div class="row">
+
+                <div class="partner-logo col-md-3">
+                    <img src="{% static 'partners/incubator.png' %}" alt="Partner 1">
+                </div>
+                <div class="partner-logo col-md-3">
+                    <img src="{% static 'partners/costech.png' %}" alt="Partner 1">
+                </div>
+                <div class="partner-logo col-md-3">
+                    <img src="{% static 'partners/ambasador defense.jpg' %}" alt="Partner 1">
+                </div>
+                <div class="partner-logo col-md-3">
+                    <img src="{% static 'partners/world business angels.jpg' %}" alt="Partner 1">
+                </div>
+                <div class="partner-logo col-md-3">
+                    <img src="{% static 'partners/neec.png' %}" alt="Partner 1">
+                </div>
+                <div class="partner-logo col-md-3">
+                    <img src="{% static 'partners/global innovation catalyst.png' %}" alt="Partner 1">
+                </div>
+                <div class="partner-logo col-md-3">
+                    <img src="{% static 'partners/iita.png' %}" alt="Partner 1">
+                </div>
+                <div class="partner-logo col-md-3">
+                    <img src="{% static 'partners/banque africaine de development.png' %}" alt="Partner 1">
+                </div>
+                <div class="partner-logo col-md-3">
+                    <img src="{% static 'partners/mest.png' %}" alt="Partner 1">
+                </div>
+                <div class="partner-logo col-md-3">
+                    <img src="{% static 'partners/university startup.jpg' %}" alt="Partner 1">
+                </div>
+                <div class="partner-logo col-md-3">
+                    <img src="{% static 'partners/milken motsepe prize.png' %}" alt="Partner 1">
+                </div>
+                <div class="partner-logo col-md-3">
+                    <img src="{% static 'partners/mit solve.png' %}" alt="Partner 1">
+                </div>
+                <div class="partner-logo col-md-3">
+                    <img src="{% static 'partners/world resources institute.png' %}" alt="Partner 1">
+                </div>
+                <div class="partner-logo col-md-3">
+                    <img src="{% static 'partners/climatech.jpg' %}" alt="Partner 1">
+                </div>
+                <div class="partner-logo col-md-3">
+                    <img src="{% static 'partners/funguo.jpg' %}" alt="Partner 1">
+                </div>
+                <div class="partner-logo col-md-3">
+                    <img src="{% static 'partners/ofa.jpeg' %}" alt="Partner 1">
+                </div>
+            </div>
+        </section>
+        
+
+        <section class="contact-section" id="comment-message">
+            <div class="row">
+                <div class=" container contact-cont col-md-7">
+                    <h2 style="color: #00d4ff; font-size: 40px;">Contact Us</h2>
+                    <p style="color: black; font-size: 30px;">We'd love to hear from you. Please feel free to get in touch with us.</p>
+                    <form class="contact-form" method="post" action="{% url 'user-message' %}">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label style="color: black;" for="name">Name</label>
+                            <input type="text" id="name" name="name" placeholder="enter your name" required>
+                        </div>
+                        <div class="form-group">
+                            <label style="color: black;" for="email">Email</label>
+                            <input type="email" id="email" name="email" placeholder="enter your email" required>
+                        </div>
+                        <div class="form-group">
+                            <label style="color: black;" for="message">Message</label>
+                            <textarea id="message" name="message" rows="4" placeholder="leave your message here" required></textarea>
+                        </div>
+                        <button type="submit" class="mb-2">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+        
+        <section>
+            <h1 style="color: #00d4ff; padding-top: 35px;">Company Information</h1>
+            <div class="row">
+                <div class="col-md-4 info">
+                  <i class="bi bi-geo-alt"></i>
+                  <p style="font-size: 27px; color: black;"><i class="fa-solid fa-location-dot" style="color: #f1250e;"></i>&nbsp; Pwani-Tanzania, Kibaha 61206</p>
+                </div>
+                <div class="col-md-4 info">
+                  <i class="bi bi-envelope"></i>
+                  <p style="font-size: 27px; color: black;"><i class="fa-solid fa-envelope" style="color: #f46691;"></i>&nbsp; info@ngwalainvetions.co.tz</p>
+                </div>
+                <div class="col-md-4 info">
+                  <i class="bi bi-phone"></i>
+                  <p style="font-size: 27px; color: black;"><i class="fa-solid fa-phone-volume" style="color: #3170dd;"></i>&nbsp; +255 754 689 034</p>
+                </div>
+              </div>
+        </section>
+
+          
+    <script>
+        const jobTitles = ["1. Production of Organic Pesticides and Fertilizer.", "2. Digital organic fertilizer and pesticide dispensing machine."];
+        const jobTitleTextElement = document.getElementById("job-title-text");
+        let currentTitleIndex = 0;
+        let currentCharIndex = 0;
+
+        // Function to update the job title character by character
+        function updateJobTitle() {
+            const currentJobTitle = jobTitles[currentTitleIndex];
+            const currentChar = currentJobTitle[currentCharIndex];
+            jobTitleTextElement.textContent += currentChar;
+
+            currentCharIndex++;
+
+            if (currentCharIndex === currentJobTitle.length) {
+                // All characters displayed for the current title
+                currentCharIndex = 0;
+                currentTitleIndex = (currentTitleIndex + 1) % jobTitles.length;
+                jobTitleTextElement.textContent = ""; // Clear the text
+            }
+        }
+        setInterval(updateJobTitle, 70); // Adjust the interval time as needed
+
+        // Add your JavaScript for animations or interactivity here
+        $(document).ready(function () {
+            // Example: Add a fadeIn animation to the vision cards
+            $('.vision-card').hide().fadeIn(1000);
+        });
+    </script>
+    {% endblock content %}
+</body>
+</html>

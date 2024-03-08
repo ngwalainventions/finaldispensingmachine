@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <h2>Register Subcomponent</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Register Subcomponent</button>
+      <a href="{% url 'subcomponent-list' %}" class="btn btn-primary btn-smx mb-5 text-right float-right" style="margin-right: 20%;">View List Subcomponents</a>
+    </form>
+</div>
+{% endblock content %}

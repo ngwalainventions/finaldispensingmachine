@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-4 col-md-11">
+    <div class="container text-center pt-5 mt-5">
+        <a href="{% url 'transaction-creation' %}" class="btn btn-primary">Create Transaction</a>
+    </div>
+    
+    <h2 class="mb-4">Transaction List</h2>
+    {% if transactions %}
+    <table class="table table-striped">
+        <thead>
+            <tr class="bg-success text-white">
+                <th scope="col">Reference No</th>
+                <th scope="col">Card No</th>
+                <th scope="col">Fertilizer taken</th>
+                <th scope="col">Amount deducted</th>
+                <th scope="col">Card Balance</th>
+                <th scope="col">Time Transaction Occured</th>
+                <th scope="col">Time Trans received to db</th>
+                <th scope="col">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for transaction in transactions %}
+            <tr>
+                <td>{{ transaction.ref_number }}</td>
+                <td>{{ transaction.uid }}</td>
+                <td>{{ transaction.fertilizer_taken }} Litres</td>
+                <td>{{ transaction.fertilizer_cost }}</td>
+                <td>{{ transaction.card_balance_at_transaction }}</td>
+                <td>{{ transaction.transaction_datetime }}</td>
+                <td>{{ transaction.created_date }}</td>
+                <td>
+                    <a href="{% url 'transaction-detail' pk=transaction.pk %}"><i class="fa-solid fa-eye" style="color: #2268e2;"></i></a>
+                    <a href="{% url 'transaction-updation' transaction_id=transaction.pk %}"><i class="fa-solid fa-pen-to-square" style="color: #2268e2;"></i></a>
+                    <a href="{% url 'transaction-deletion' transaction_id=transaction.pk %}"><i class="fa-solid fa-trash-can" style="color: #ec0404;"></i></a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+        <div class="text-center" style="font-size: 30px; color: red; align-items: center; justify-content: center; text-align: center;">
+            No transactions available now.
+        </div>
+    {% endif %}
+
+    <div class="pagination mt-4">
+        <span class="step-links">
+            {% if transactions.has_previous %}
+                <a href="?page=1">&laquo; first</a>
+                <a href="?page={{ transactions.previous_page_number }}">previous</a>
+            {% endif %}
+    
+            Page {{ transactions.number }} of {{ transactions.paginator.num_pages }}.
+    
+            {% if transactions.has_next %}
+                <a href="?page={{ transactions.next_page_number }}">next</a>
+                <a href="?page={{ transactions.paginator.num_pages }}">last &raquo;</a>
+            {% endif %}
+        </span>
+    </div>
+    
+</div>
+    
+{% endblock %}

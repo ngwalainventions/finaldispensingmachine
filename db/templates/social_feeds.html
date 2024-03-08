@@ -1,0 +1,117 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load custom_filters %}
+{%block content%}
+
+<style>
+    .success-message {
+        color: green;
+    }
+</style>
+
+<div class="container mt-5 col-md-12">
+    <h2>Social Feeds</h2>
+    <div class="row">
+        {% for post in posts %}
+            <div class="col-md-4">
+                <div class="card mb-3">
+                    <img src="{{ post.image.url }}" class="card-img-top" alt="Post 1">
+                    <div class="card-body">
+                        <h3>{{ post.title }}</h3>
+                        <p class="card-text">
+                            {{ post.content|truncate_words:8 }}  <!-- Adjust the word count as needed -->
+                            {% if post.content|length > 30 %}  <!-- Display "Read More" link if content is truncated -->
+                                <a href="{% url 'post-detail' post.pk %}">Read More</a>
+                            {% endif %}
+                        </p>
+                        <!-- <img src="{% static 'images/passport.jpg' %}" alt="" style="width: 15%; height: 15%; border-radius: 50%;"> -->
+                        <img src="{{ post.author.profile_image.url }}" alt="User Profile" style="width: 9%; height: 9%; border-radius: 50%;">
+                        <a href="{% url 'post-detail' post.pk %}"><button class="btn btn-primary mx-5 my-2">View</button></a>
+                        <!-- <form action=""> -->
+                            {% csrf_token %}
+                            <button class="btn btn-primary like-btn px-4 mx-3 mb-2 mt-2" data-post-id="{{ post.id }}">
+                                Likes<span class="badge bg-secondary like-count ">{{ post.likes }}</span>
+                            </button>
+                        <!-- </form> -->
+                        <button class="btn btn-info float-right my-2 mx-3 share-btn" data-post-id="{{ post.id }}"> Share</button>
+                        <span class="copy-message"></span>
+
+                        <p><small>Posted on {{ post.created_at|date:"j F Y" }} by: {{ post.author }} </small></p>
+                    </div>
+                    
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+
+<!-- At the end of your HTML file or in a separate script file -->
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+<!-- Add CSRF token to the script -->
+<script>
+    $(document).ready(function () {
+        $(".like-btn").click(function () {
+            var postId = $(this).data("post-id");
+            var likeCount = $(this).find(".like-count");
+            var csrfToken = $('input[name="csrfmiddlewaretoken"]').val();  // Get the CSRF token from the form
+
+            // Send an AJAX request to update the like count
+            $.ajax({
+                type: "POST",
+                url: "/update_like/",
+                data: {
+                    post_id: postId,
+                    csrfmiddlewaretoken: csrfToken,  // Include the CSRF token in the data
+                },
+                success: function (data) {
+                    // Update the like count on success
+                    likeCount.text(data.likes);
+                },
+                error: function (error) {
+                    console.log("Error updating like:", error);
+                },
+            });
+        });
+    });
+
+
+    $(document).ready(function () {
+        $(".share-btn").click(function () {
+            var postId = $(this).data("post-id");
+            var copyMessage = $(this).siblings(".copy-message");
+
+            // Assuming you have a URL that you want to copy, you can replace it with the actual URL
+            var postUrl = window.location.origin + "/post-detail/" + postId;
+
+            // Create a temporary input element to copy the text
+            var tempInput = $("<input>");
+            $("body").append(tempInput);
+
+            // Set the input value to the post URL
+            tempInput.val(postUrl).select();
+
+            try {
+                // Copy the text to the clipboard
+                document.execCommand("copy");
+                // Display a success message
+                copyMessage.text("Link copied to clipboard!").addClass("success-message");
+            } catch (err) {
+                // Display an error message
+                copyMessage.text("Oops, unable to copy the link.").removeClass("success-message");
+            } finally {
+                // Remove the temporary input element
+                tempInput.remove();
+            }
+
+            // Optionally, you can fade out the message after a few seconds
+            setTimeout(function () {
+                copyMessage.text("").removeClass("success-message");
+            }, 3000);
+        });
+    });
+</script>
+
+
+
+{%endblock content%}

@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<!-- transaction_list.html -->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Recv Tx</title>
+</head>
+<body>
+    <h1 class="text-center py-4">Received amount of money to a Card from Provider</h1>
+    {% if transactions %}
+        <table class="table table-striped col-md-11 mx-5">
+            <thead>
+                <tr>
+                    <th scope="col">Amount Received</th>
+                    <th scope="col">Phone Number</th>
+                    <th scope="col">Sender Name</th>
+                    <th scope="col">Muamala Number</th>
+                    <th scope="col">Received Time</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for transaction in transactions %}
+                <tr>
+                    <td>{{ transaction.amount_received }}</td>
+                    <td>{{ transaction.phone_number }}</td>
+                    <td>{{ transaction.sender_name }}</td>
+                    <td>{{ transaction.muamala_number }}</td>
+                    <td>{{ transaction.received_time }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p style="text-align: center;">No transactions received.</p>
+    {% endif %}
+</body>
+</html>
+
+{% endblock content %}

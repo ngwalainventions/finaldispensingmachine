@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+    <div class="container">
+        <br>
+      <div class="col-12 grid-margin stretch-card">
+          <div class="card">
+              <div class="card-body">
+                  <h2 class="card-title">Edit News</h2>
+                  {% for message in messages %}
+                    <div class = "alert alert-primary alert-dismissible fade show" role="alert">
+                        {{message}}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="close"></button>
+                    </div>
+                    {% endfor %}
+                  
+                  <form class="forms-sample" method='POST' enctype="multipart/form-data">
+      
+                      {% csrf_token %}
+                      
+                    <div class="form-group">
+                      <label for="name">Heading</label>
+                      <input type="text" class="form-control" name="header" value="{{s.header}}">
+                    </div>
+                    <br>
+
+                    <div class="form-group">
+                        <label for="gender">Body:</label>
+                        <textarea class="form-control" name="body" rows="5">{{s.body}}</textarea>
+                      </div>
+                    <br>
+                    
+                  
+                    <div class="form-group">
+                      <label for="image">Select Image (recomended size 600x600 px):</label>
+                      <input type="file" class="form-control" name="image" >
+                      <br>
+                    </div>
+                    
+                    
+                    <button type="submit" class="btn btn-success mr-2">Submit</button>
+                    
+                  </form>
+                  <button class="btn btn-light" onclick="goBack()">Cancel</button>
+      
+                    <script>
+                        function goBack() {
+                            window.history.back();
+                        }
+                    </script>
+              </div>
+          </div>
+      </div>
+      </div>   
+
+{% endblock %}

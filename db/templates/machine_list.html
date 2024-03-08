@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-4 col-md-11">
+    <div class="container text-center pt-5 mt-5">
+        <a href="{% url 'machine-create' %}" class="btn btn-primary">Register Machine</a>
+    </div>
+    <h2 class="mb-4">Machine List</h2>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">Machine Name</th>
+                <th scope="col">Region</th>
+                <th scope="col">Machine Model</th>
+                <th scope="col">Tank Volume</th>
+                <th scope="col">Refill Date</th>
+                <th scope="col">Status</th>
+                <th scope="col">Volume Left</th>
+                <th scope="col">Volume Taken</th>
+                <th scope="col">Default</th>
+                <th scope="col">Installed Date</th>
+                <th scope="col">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for machine in machines %}
+            <tr>
+                <td><a href="{% url 'machine-detail' pk=machine.pk %}">{{ machine.name }}</a></td>
+                <td>{{ machine.region }}</td>
+                <td>{{ machine.machine_model }}</td>
+                <td>{{ machine.tank_volume }}</td>
+                <td>{{ machine.refill_date }}</td>
+                <td>{{ machine.status }}</td>
+                <td>{{ machine.volume_left }}</td>
+                <td>{{ machine.volume_taken }}</td>
+                <td>{{ machine.tank_cap }}</td>
+                <td>{{ machine.inst_date }}</td>
+                <td>
+                    <a href="{% url 'machine-detail' pk=machine.pk %}"><i class="fa-solid fa-eye" style="color: #2268e2;"></i></a>
+                    <a href="{% url 'machine-update' pk=machine.pk %}"><i class="fa-solid fa-pen-to-square" style="color: #2268e2;"></i></a>
+                    <a href="{% url 'machine-delete' pk=machine.pk %}"><i class="fa-solid fa-trash-can" style="color: #ec0404;"></i></a>
+                    <a href="{% url 'add-fertilizer' machine_id=machine.id %}"><i class="fa-solid fa-plus-square" style="color: #4caf50;"></i></a>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="11">No machines available.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <div class="pagination mt-4">
+        <span class="step-links">
+            {% if machines.has_previous %}
+                <a href="?page=1">&laquo; first</a>
+                <a href="?page={{ machines.previous_page_number }}">previous</a>
+            {% endif %}
+
+            <span class="current-page">
+                Page {{ machines.number }} of {{ machines.paginator.num_pages }}.
+            </span>
+
+            {% if machines.has_next %}
+                <a href="?page={{ machines.next_page_number }}">next</a>
+                <a href="?page={{ machines.paginator.num_pages }}">last &raquo;</a>
+            {% endif %}
+        </span>
+    </div>
+</div>
+{% endblock %}
